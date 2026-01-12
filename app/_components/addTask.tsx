@@ -16,22 +16,26 @@ import { Plus } from "lucide-react";
 import { DatePicker } from "./DatePicker";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CreateTaskInput } from "@/types";
 import { CreateTask } from "@/app/utils/taskAPI";
 import { Textarea } from "@/components/ui/textarea";
-type TaskData = {
-  title: string;
-  description: string;
-  priority: string;
-  deadline: string;
-  
-};
+
+// type TaskData = {
+//   title: string;
+//   description: string;
+//   priority: string;
+//   deadline: string;
+// };
+// Use imported type, but ensure form is compatible.
+// CreateTaskInput has priority: Priority | string which is fine.
+
 export function AddTask() {
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, control, reset } = useForm<TaskData>();
+  const { register, handleSubmit, control, reset } = useForm<CreateTaskInput>();
 
   const mutation = useMutation({
-    mutationFn: (data: TaskData) => CreateTask(data),
+    mutationFn: (data: CreateTaskInput) => CreateTask(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
 

@@ -8,10 +8,11 @@ import UpdateTask from "./UpdateTask";
 type TaskProps = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   deadline: string;
   priority: string;
   status: boolean;
+  isCompleted?: boolean; 
 };
 
 export default function Task({

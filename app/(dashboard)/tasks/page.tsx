@@ -6,14 +6,7 @@ import Task from "@/app/_components/Task";
 import { Search } from "lucide-react";
 import { AddTask } from "@/app/_components/addTask";
 
-type TaskType = {
-  _id: string;
-  title: string;
-  description: string;
-  deadline: string;
-  priority: string;
-  status: boolean;
-};
+import { Task as TaskType } from "@/types";
 
 export default function Tasks() {
   const [search, setSearch] = useState("");
@@ -34,6 +27,9 @@ export default function Tasks() {
 
   if (isLoading) return <p className="text-gray-500">Loading...</p>;
   if (isError) return <p className="text-red-500">Error loading tasks</p>;
+
+  // Ensure data is an array
+  const tasks = Array.isArray(data) ? data : [];
 
   return (
     <div className="p-6 space-y-6">
@@ -99,7 +95,7 @@ export default function Tasks() {
 
         {/* Tasks List */}
         <div className="space-y-4">
-          {data.map((task: TaskType) => (
+          {tasks.map((task: TaskType) => (
             <Task
               key={task._id}
               id={task._id}
@@ -108,6 +104,7 @@ export default function Tasks() {
               priority={task.priority}
               deadline={task.deadline}
               status={task.status}
+              isCompleted={task.isCompleted}
             />
           ))}
         </div>

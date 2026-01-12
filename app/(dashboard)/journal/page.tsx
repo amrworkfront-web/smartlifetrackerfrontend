@@ -5,14 +5,7 @@ import { Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getJournals } from "@/app/utils/journalAPI";
 import Journal from "@/app/_components/Journal";
-
-type JournalType = {
-  _id: string;
-  title: string;
-  content: string;
-  mood: string;
-  createdAt:string
-};
+import { Journal as JournalType } from "@/types";
 
 export default function Journals() {
   const { data = [], isLoading, isError } = useQuery({
@@ -22,6 +15,9 @@ export default function Journals() {
 
   if (isLoading) return <p className="p-6">Loading...</p>;
   if (isError) return <p className="p-6 text-red-500">Error loading journals</p>;
+
+  // Ensure data is array
+  const journals = Array.isArray(data) ? data : [];
 
   return (
     <div className="p-6 space-y-6">
@@ -45,13 +41,13 @@ export default function Journals() {
 
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {data.map((journal: JournalType) => (
+        {journals.map((journal: JournalType) => (
           <Journal
             key={journal._id}
             id={journal._id}
             title={journal.title}
             content={journal.content}
-  mood={journal.mood as "Happy" | "Sad" | "Neutral"}
+            mood={journal.mood}
             createdAt={journal.createdAt}
           />
         ))}

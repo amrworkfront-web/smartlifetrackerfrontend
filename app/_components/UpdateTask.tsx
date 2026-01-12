@@ -22,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 type TaskData = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   priority: string;
   deadline: string;
 };

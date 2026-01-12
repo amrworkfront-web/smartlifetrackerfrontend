@@ -1,20 +1,16 @@
 import axiosInstance from "./axiosInstance";
+import { CreateTaskInput, Task, UpdateTaskInput } from "@/types";
 
-export const CreateTask=async (taskData:{title:string,description:string,priority:string,deadline:string})=>{
-    const response =await axiosInstance.post('/tasks',taskData)
-    return response.data
+export const CreateTask = async (taskData: CreateTaskInput): Promise<Task> => {
+    const response = await axiosInstance.post('/tasks', taskData);
+    return response.data;
+};
 
-}
-
-// export const getTasks=async()=>{
-//     const response=await axiosInstance.get('/tasks')
-//     return response.data
-// }
 export const getTasks = async (filters?: {
   search?: string;
   priority?: string;
   dateFilter?: 'today' | 'upcoming' | 'all';
-}) => {
+}): Promise<Task[]> => {
   let query = '';
   if (filters) {
     const params = new URLSearchParams();
@@ -28,13 +24,15 @@ export const getTasks = async (filters?: {
   return response.data;
 };
 
+export const updateTask = async (taskData: UpdateTaskInput): Promise<Task> => {
+    const { id, ...data } = taskData;
+    const response = await axiosInstance.put(`/tasks/${id}`, data);
+    return response.data;
+};
 
-export const updateTask=async(taskData:{title:string,description:string,priority:string,deadline:string,id:string,status:boolean})=>{
-const response=await axiosInstance.put(`/tasks/${taskData.id}`,taskData)
-return response.data
-}
-export const deleteTask=async(id:string)=>{
-    const response =await axiosInstance.delete(`/tasks/${id}`)
-    return response.data
-}
+export const deleteTask = async (id: string): Promise<void> => {
+    const response = await axiosInstance.delete(`/tasks/${id}`);
+    return response.data;
+};
+
 

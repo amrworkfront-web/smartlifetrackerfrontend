@@ -1,10 +1,11 @@
 import UpdateJournal from "./UpdateJournal";
+import { Mood } from "@/types";
 
 type JournalProps = {
   id: string;
   title: string;
   content: string;
-  mood: "Happy" | "Sad" | "Neutral";
+  mood: Mood;
   createdAt: string;
 };
 
@@ -13,6 +14,9 @@ const moodColors: Record<string, string> = {
   Happy: "bg-green-100 text-green-700",
   Sad: "bg-blue-100 text-blue-700",
   Neutral: "bg-gray-100 text-gray-600",
+  Excited: "bg-purple-100 text-purple-700",
+  Tired: "bg-yellow-100 text-yellow-700",
+  Angry: "bg-red-100 text-red-700",
 };
 
 export default function Journal({ id, title, content, mood, createdAt }: JournalProps) {
