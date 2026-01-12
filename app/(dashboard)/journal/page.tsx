@@ -51,7 +51,7 @@ export default function Journals() {
             id={journal._id}
             title={journal.title}
             content={journal.content}
-            mood={journal.mood}
+  mood={journal.mood as "Happy" | "Sad" | "Neutral"}
             createdAt={journal.createdAt}
           />
         ))}
