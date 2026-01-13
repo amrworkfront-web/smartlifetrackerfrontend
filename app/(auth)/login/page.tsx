@@ -32,6 +32,8 @@ export default function Page() {
     onSuccess: () => {
       toast.success("wellcome back")
       reset()
+      router.refresh()
+
       router.push("/")
     },
     onError:(error:any)=>{
