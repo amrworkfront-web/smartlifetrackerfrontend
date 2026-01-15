@@ -20,7 +20,7 @@ import {
 import Link from "next/link"
 
 export const sidebarItems = [
-  { title: "Tasks", icon: CheckSquare, href: "/tasks" },
+  { title: "Tasks", icon: CheckSquare, href: "/" },
   { title: "Notes", icon: StickyNote, href: "/notes" },
   { title: "Journal", icon: BookOpen, href: "/journal" },
   { title: "Calendar", icon: Calendar, href: "/calendar" },
