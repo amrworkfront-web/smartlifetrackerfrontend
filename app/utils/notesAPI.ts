@@ -6,8 +6,16 @@ export const createNote=async(Note:{title:string,content:string,tag:string})=>{
 
 }
 
-export const getNotes=async()=>{
-    const response=await axiosInstance.get('/notes')
+export const getNotes=async(search?: string)=>{
+      let query = '';
+
+      if(search){
+          const params = new URLSearchParams();
+          params.append('search', search);
+          query = `?${params.toString()}`; 
+        }
+
+    const response=await axiosInstance.get(`/notes${query}`)
     return response.data
 }
 

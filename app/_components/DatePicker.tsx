@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl"
 
 import * as React from "react"
 import { ChevronDownIcon } from "lucide-react"
@@ -16,6 +17,7 @@ type DatePickerProps = {
 }
 
 export function DatePicker({ value, onChange }: DatePickerProps) {
+  const t = useTranslations("common");
   const [open, setOpen] = React.useState(false)
 
   const selectedDate = value ? new Date(value) : undefined
@@ -24,7 +26,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className="w-48 justify-between font-normal">
-          {selectedDate ? selectedDate.toLocaleDateString() : "Select date"}
+          {selectedDate ? selectedDate.toLocaleDateString() : t("selectDate")}
           <ChevronDownIcon />
         </Button>
       </PopoverTrigger>
