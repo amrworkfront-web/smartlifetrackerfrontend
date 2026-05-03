@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Play, Pause, RotateCcw, Target } from "lucide-react";
+type Mode = "focus" | "short";
 
 export default function FocusPomodoro() {
-  const [mode, setMode] = useState("focus");
+const [mode, setMode] = useState<Mode>("focus");
   const [key, setKey] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   
@@ -13,26 +14,25 @@ export default function FocusPomodoro() {
     pomodoroName: ""
   });
 
+  const PRESETS: Record<Mode, number> = {
+  focus: Number(pomodoro.pomodoroTime) * 60,
+  short: 5 * 60,
+};
+
   // تحديث القيم من الـ Inputs
-  const handleChange = (e) => {
-    const { id, value } = e.target;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {    const { id, value } = e.target;
     setPomodoro((prev) => ({
       ...prev,
       [id === "name" ? "pomodoroName" : "pomodoroTime"]: value
     }));
   };
 
-  const handlePomodoro = (e) => {
-    e.preventDefault();
+  const handlePomodoro = (e: FormEvent) => {    e.preventDefault();
     setKey((prev) => prev + 1); // إعادة تشغيل التايمر بالوقت الجديد
     setIsPlaying(false);
     console.log("Started session:", pomodoro.pomodoroName);
   };
 
-  const PRESETS = {
-    focus: Number(pomodoro.pomodoroTime) * 60,
-    short: 5 * 60,
-  };
 
   const getThemeColor = () => (mode === "focus" ? "#7C3AED" : "#10B981");
 

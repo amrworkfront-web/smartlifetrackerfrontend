@@ -66,7 +66,7 @@ export default function UpdateTask({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="px-3 py-1.5 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition">
+        <button className=" update-btn">
           {taction("update")}
         </button>
       </DialogTrigger>

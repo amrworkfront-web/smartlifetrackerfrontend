@@ -28,8 +28,6 @@ export default function Tasks() {
       }),
   });
 
-  if (isLoading) return <p className="text-gray-500">{t("status.loading")}</p>;
-  if (isError) return <p className="text-red-500">{t("status.error")}</p>;
 
   // Ensure data is an array
   const tasks = Array.isArray(data) ? data : [];
@@ -98,6 +96,8 @@ export default function Tasks() {
 
         {/* Tasks List */}
         <div className="space-y-4">
+          {isLoading && <p className="text-gray-500">{t("status.loading")}</p>}
+          {isError && <p className="text-red-500">{t("status.error")}</p>}
           {tasks.map((task: TaskType) => (
             <div
               key={task._id}

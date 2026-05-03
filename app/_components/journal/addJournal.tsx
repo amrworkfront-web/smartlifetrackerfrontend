@@ -20,6 +20,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createJournal } from "@/app/utils/journalAPI";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { AxiosError } from "axios";
 
 type JournalData = {
   title: string;
@@ -46,7 +47,8 @@ export function AddJournal() {
       toast.success(tp("toast.createSuccess"));
       reset();
     },
-    onError: (error: any) => {
+
+    onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(tp("toast.createError"), {
         description:
           error.response?.data?.message ||
@@ -59,7 +61,7 @@ export function AddJournal() {
     <Dialog>
       {/* Button that opens the modal */}
       <DialogTrigger asChild>
-        <button className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white text-sm font-medium hover:bg-green-700 transition">
+        <button className="flex items-center add-btn">
           <Plus className="w-4 h-4" />
           {tp("addJournal")}
         </button>

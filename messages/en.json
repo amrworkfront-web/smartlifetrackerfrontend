@@ -183,7 +183,8 @@
       "notes": "Notes",
       "journal": "Journal",
       "calendar": "Calendar",
-      "profile": "Profile"
+      "profile": "Profile",
+      "pomodoro": "pomodoro"
     },
     "logout": "Logout",
     "logoutSuccess": "Logout successfully",

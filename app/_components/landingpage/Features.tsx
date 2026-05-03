@@ -1,9 +1,12 @@
+"use client";
+
 import {
   Check,
   BookmarkCheck,
   NotebookPen,
   AlarmClockCheck,
 } from "lucide-react";
+import { motion } from "motion/react";
 
 const featuresData = [
   {
@@ -44,11 +47,28 @@ export default function Features() {
         <p className="text-muted-foreground max-w-xl mx-auto">Powerful tools to help you manage your time, thoughts, and productivity.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.15
+            }
+          }
+        }}
+      >
         {featuresData.map((feature, index) => (
-          <div 
+          <motion.div 
             key={index}
             className="group relative p-8 rounded-3xl border border-white/5 bg-slate-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-emerald-500/10"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.5 }
+              }
+            }}
           >
             {/* Icon Container */}
             <div className={`w-14 h-14 rounded-2xl ${feature.bg} ${feature.color} flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3`}>
@@ -65,9 +85,9 @@ export default function Features() {
 
             {/* Decorative element */}
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

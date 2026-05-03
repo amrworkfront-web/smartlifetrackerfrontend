@@ -11,6 +11,7 @@ import {toast} from 'sonner'
 import {useAppDispatch} from '@/app/store/hook'
 import {setUser} from '@/app/store/authSlice'
 import {Link} from "@/navigation"
+import { AxiosError } from 'axios';
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name must be at most 100 characters'),
   email: z.string().email('Please enter a valid email'),
@@ -35,9 +36,9 @@ export default function RegisterPage() {
       localStorage.setItem('user',JSON.stringify((data)))
       dispatch(setUser(data))
       reset()
-      router.push('/') // بعد التسجيل يروح لصفحة login
+      router.push('/tasks') 
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(t('errorToast'), {
         description: error.response?.data?.message || t("errorDesc")
       })
@@ -47,8 +48,8 @@ export default function RegisterPage() {
 
     
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md rounded-2xl  p-8 shadow-lg border border-gray-200 space-y-6">
+    <div className="flex items-center justify-center px-4">
+      <div className="w-full max-w-md ">
         <h1 className="text-2xl font-bold text-center">
           {t("title")}
         </h1>

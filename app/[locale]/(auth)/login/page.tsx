@@ -12,6 +12,7 @@ import { setUser } from "@/app/store/authSlice";
 import { Link } from "@/navigation";
 
 import { motion } from "framer-motion";
+import { AxiosError } from "axios";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email"),
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -42,9 +43,9 @@ export default function Page() {
       dispatch(setUser(data));
       localStorage.setItem("user", JSON.stringify(data));
       reset();
-      router.replace("/");
+      router.replace("/tasks");
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(t("errorToast"), {
         description: error.response?.data?.message || t("errorDesc"),
       });

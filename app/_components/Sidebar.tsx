@@ -138,7 +138,6 @@ import {
   CheckSquare,
   StickyNote,
   BookOpen,
-  Calendar,
   User,
   LogOut,
   Loader2,
@@ -148,11 +147,10 @@ import ThemeToggle from "./ThemeToggle";
 import { useState } from "react";
 
 const sidebarItems = [
-  { key: "tasks", icon: CheckSquare, href: "/" },
+  { key: "tasks", icon: CheckSquare, href: "/tasks" },
   { key: "pomodoro", icon: Timer, href: "/pomodoro" },
   { key: "notes", icon: StickyNote, href: "/notes" },
   { key: "journal", icon: BookOpen, href: "/journal" },
-  { key: "calendar", icon: Calendar, href: "/calendar" },
   { key: "profile", icon: User, href: "/profile" },
 ];
 

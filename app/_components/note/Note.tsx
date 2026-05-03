@@ -52,7 +52,7 @@ gap-4 p-5   card">
       
     />
     <button
-      className="px-3 py-1.5 text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors duration-200 hover:cursor-pointer"
+      className="delete-btn"
       onClick={() => deleteMutation.mutate(id)}
       title={tc("delete")}
     >

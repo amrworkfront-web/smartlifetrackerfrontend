@@ -20,6 +20,7 @@ import { CreateTaskInput } from "@/types";
 import { CreateTask } from "@/app/utils/taskAPI";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 // type TaskData = {
 //   title: string;
@@ -46,14 +47,14 @@ export function AddTask() {
 
       reset();
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(tp("toast.createError"))}
   });
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white text-sm font-medium hover:bg-green-700 transition">
+        <button className="flex items-center add-btn ">
           <Plus className="w-4 h-4" />
           {tp("addTask")}
         </button>

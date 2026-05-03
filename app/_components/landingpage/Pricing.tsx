@@ -1,5 +1,8 @@
+"use client";
+
 import { Check, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const tiers = [
   {
@@ -52,15 +55,33 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.15
+              }
+            }
+          }}
+        >
           {tiers.map((tier) => (
-            <div
+            <motion.div
               key={tier.name}
-              className={`relative p-8 rounded-3xl border transition-all duration-300 hover:scale-[1.02] ${
+              className={`relative p-8 rounded-3xl border transition-all duration-300 ${
                 tier.popular
                   ? "bg-slate-900 border-emerald-500 shadow-2xl shadow-emerald-500/20 ring-2 ring-emerald-500"
                   : "bg-slate-950/50 border-white/10 hover:border-white/20"
               }`}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.5 }
+                }
+              }}
+              whileHover={{ scale: 1.05 }}
             >
               {tier.popular && (
                 <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
@@ -88,20 +109,22 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <Link
-                href="/register"
-                className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold transition-all ${
-                  tier.popular
-                    ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg"
-                    : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
-                }`}
-              >
-                {tier.buttonText}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/register"
+                  className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold transition-all ${
+                    tier.popular
+                      ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg"
+                      : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
+                  }`}
+                >
+                  {tier.buttonText}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

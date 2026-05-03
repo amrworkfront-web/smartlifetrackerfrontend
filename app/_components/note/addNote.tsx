@@ -20,6 +20,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { createNote } from "@/app/utils/notesAPI";
 import { useTranslations } from "next-intl";
+import { AxiosError } from "axios";
 type TaskData = {
   title: string;
   content: string;
@@ -40,7 +41,7 @@ export function AddNote() {
       toast.success(tn("toast.createSuccess"));
       reset();
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(tn("toast.createError"));
     },
   });
@@ -52,7 +53,7 @@ export function AddNote() {
   whileHover={{ scale: 1.1 }}
   whileTap={{ scale: 0.97 }}
   transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white text-sm font-medium hover:bg-green-700 transition"
+          className="flex items-center add-btn"
         >
           <Plus className="w-4 h-4" />
           {tn("addNote")}
