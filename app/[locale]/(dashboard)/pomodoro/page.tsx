@@ -54,7 +54,7 @@ const [mode, setMode] = useState<Mode>("focus");
           <button
             key={m}
             onClick={() => {
-              setMode(m);
+              setMode(m as Mode);
               setKey((k) => k + 1);
               setIsPlaying(false);
             }}

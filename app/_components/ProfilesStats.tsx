@@ -27,7 +27,7 @@ export default function ProfileStats() {
   const totalTasks = tasks?.length
   const totalNotes = notes?.length
   const totalJournals= journals?.length
-  const completedTasks = tasks?.filter(t => t.status).length
+  const completedTasks = tasks?.filter((t:any) => t.status).length
 
   const stats = [
     { label: t('totalTasks'), value: totalTasks, icon: ClipboardList },
