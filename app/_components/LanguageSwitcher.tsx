@@ -17,9 +17,10 @@ export default function LanguageSwitcher() {
   return (
     <Button
       variant="ghost"
-      size="sm"
+      size="icon"
       onClick={toggleLanguage}
-      className="font-medium bg-subtext/20 border border-gray-300 px-4 py-5 hover:cursor-pointer"
+      className="h-8 w-8 font-medium bg-subtext/20 border border-gray-300 hover:cursor-pointer"
+      aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}
     >
       {locale === "en" ? "ع" : "En"}
     </Button>

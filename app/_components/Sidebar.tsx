@@ -96,7 +96,7 @@ export default function CustomSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <div className="flex justify-around items-start px-2 py-2">
+      <div className="flex justify-around items-start px-2 py-2 group-data-[collapsible=icon]:flex-col group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:gap-2">
         <ThemeToggle />
         <LanguageSwitcher />
       </div>

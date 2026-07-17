@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/app/utils/userAPI";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { toast } from "sonner";
 import { useAppDispatch } from "@/app/store/hook";
 import { setUser } from "@/app/store/authSlice";

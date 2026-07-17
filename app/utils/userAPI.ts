@@ -24,7 +24,7 @@ export const registerUser = async (userData: RegisterInput): Promise<AuthRespons
 
 export const loginUser = async (credentials: LoginInput): Promise<AuthResponse> => {
   const response = await axiosInstance.post("/auth/login", credentials);
-  return response.data;
+  return response.data.data;
 };
 
 export const logoutUser = async (): Promise<void> => {

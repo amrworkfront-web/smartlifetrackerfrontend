@@ -6,8 +6,7 @@ export interface ApiErrorResponse {
 }
 
 const axiosInstance: AxiosInstance = axios.create({
-  // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api",
-  baseURL: "https://smartlifetrackerbackend-production.up.railway.app/api",
+  baseURL: "/api",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -20,7 +19,8 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401) {
       if (typeof window !== "undefined") {
         localStorage.removeItem("user");
-        window.location.href = "/login";
+        const locale = window.location.pathname.split("/")[1] || "en";
+        window.location.href = `/${locale}/login`;
       }
     }
     return Promise.reject(error);

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "@/app/utils/userAPI";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { toast } from "sonner";
 import { useAppDispatch } from "@/app/store/hook";
 import { setUser } from "@/app/store/authSlice";
@@ -45,8 +45,8 @@ export default function LoginPage() {
       dispatch(setUser(userData));
       localStorage.setItem("user", JSON.stringify(userData));
       reset();
-      router.replace("/tasks");
-    },
+router.replace("/journal");
+ },
     onError: (error: AxiosError<{ message?: string }>) => {
       toast.error(t("errorToast"), {
         description: error.response?.data?.message || t("errorDesc"),
