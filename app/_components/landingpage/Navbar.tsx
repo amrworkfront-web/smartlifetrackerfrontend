@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Link } from "@/navigation"; // تأكد من الـ import الصحيح للـ i18n لو شغال بيه
 
 export default function Navbar() {

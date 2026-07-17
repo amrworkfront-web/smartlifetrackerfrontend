@@ -1,7 +1,7 @@
 {
   "auth": {
     "login": {
-      "title": "أهلاً بعودتك 👋",
+      "title": "أهلاً بعودتك",
       "subtitle": "سجل الدخول إلى حسابك",
       "email": "البريد الإلكتروني",
       "emailPlaceholder": "you@example.com",
@@ -28,8 +28,8 @@
       "submitting": "جاري التسجيل...",
       "footerText": "لديك حساب بالفعل؟",
       "loginLink": "تسجيل الدخول",
-      "successToast": "أهلاً بك",
-      "errorToast": "خطأ في تسجيل المستخدم:",
+      "successToast": "تم إنشاء الحساب بنجاح",
+      "errorToast": "خطأ في التسجيل",
       "errorDesc": "يرجى التحقق من البيانات والمحاولة مرة أخرى."
     }
   },
@@ -38,68 +38,44 @@
       "title": "المهام",
       "addTask": "إضافة مهمة",
       "searchPlaceholder": "ابحث في المهام...",
-      "filters": {
-        "all": "الكل",
-        "today": "اليوم",
-        "upcoming": "القادمة"
-      },
-      "priority": {
-        "high": "عالية",
-        "medium": "متوسطة",
-        "low": "منخفضة"
-      },
-      "status": {
-        "loading": "جاري التحميل...",
-        "error": "خطأ في تحميل المهام"
-      },
-      "actions": {
-        "delete": "حذف",
-        "update": "تحديث"
-      },
+      "filters": { "all": "الكل", "today": "اليوم", "upcoming": "القادمة" },
+      "priority": { "high": "عالية", "medium": "متوسطة", "low": "منخفضة" },
+      "status": { "loading": "جاري التحميل...", "error": "خطأ في تحميل المهام", "empty": "لا توجد مهام" },
+      "actions": { "delete": "حذف", "update": "تحديث" },
       "toast": {
         "deleteSuccess": "تم حذف المهمة \"{title}\" بنجاح",
-        "deleteError": "خطأ، فشل في حذف المهمة",
+        "deleteError": "فشل في حذف المهمة",
         "createSuccess": "تم إنشاء المهمة بنجاح",
-        "createError": "خطأ، فشل في إضافة المهمة",
-        "updateSuccess": "تم تحديث المهمة",
-        "updateSuccessFull": "تم تحديث المهمة بنجاح",
-        "updateError": "خطأ، فشل في إضافة المهمة"
+        "createError": "فشل في إضافة المهمة",
+        "updateSuccess": "تم تحديث المهمة بنجاح",
+        "updateError": "فشل في تحديث المهمة"
       }
     },
     "notes": {
       "title": "الملاحظات",
       "addNote": "إضافة ملاحظة",
       "searchPlaceholder": "ابحث في الملاحظات...",
-      "status": {
-        "error": "خطأ في تحميل الملاحظات"
-      },
+      "status": { "error": "خطأ في تحميل الملاحظات" },
       "toast": {
         "updateSuccess": "تم تحديث الملاحظة بنجاح",
-        "updateError": "خطأ، فشل في تحديث الملاحظة",
+        "updateError": "فشل في تحديث الملاحظة",
         "deleteSuccess": "تم حذف الملاحظة \"{title}\" بنجاح",
-        "deleteError": "خطأ، فشل في حذف الملاحظة",
+        "deleteError": "فشل في حذف الملاحظة",
         "createSuccess": "تم إنشاء الملاحظة بنجاح",
-        "createError": "خطأ، فشل في إضافة الملاحظة"
-
+        "createError": "فشل في إضافة الملاحظة"
       }
     },
     "journal": {
       "title": "اليوميات",
-      "addJournal": "إضافة دفتر يوميات",
+      "addJournal": "إضافة يوميات",
       "searchPlaceholder": "ابحث في أفكارك...",
-      "status": {
-        "error": "خطأ في تحميل اليوميات"
-      },
-      "mood": {
-        "happy": "سعيد",
-        "sad": "حزين",
-        "neutral": "عادي"
-      },
+      "status": { "error": "خطأ في تحميل اليوميات" },
+      "mood": { "happy": "سعيد", "sad": "حزين", "neutral": "عادي" },
       "toast": {
         "createSuccess": "تم إنشاء اليوميات بنجاح",
-        "createError": "خطأ، فشل في إضافة اليوميات",
+        "createError": "فشل في إضافة اليوميات",
         "updateSuccess": "تم تحديث اليوميات بنجاح",
-        "updateError": "خطأ، فشل في إضافة اليوميات"
+        "updateError": "فشل في تحديث اليوميات"
       }
     },
     "profile": {
@@ -110,24 +86,24 @@
         "journals": "اليوميات",
         "notes": "الملاحظات",
         "loading": "جاري تحميل الإحصائيات..."
-      },
-      "info": {
-        "title": "معلومات الملف الشخصي",
-        "name": "الاسم الكامل",
-        "email": "البريد الإلكتروني",
-        "cancel": "إلغاء",
-        "save": "حفظ التغييرات"
       }
     },
-    "calendar": {
-      "title": "التقويم"
+    "calendar": { "title": "التقويم" },
+    "pomodoro": {
+      "title": "وضع التركيز",
+      "focusingOn": "جاري التركيز على",
+      "taskName": "اسم المهمة",
+      "goalPlaceholder": "ما هو الهدف؟",
+      "minutes": "الدقائق",
+      "setGoal": "تعيين الهدف",
+      "startFocus": "ابدأ التركيز",
+      "pause": "إيقاف مؤقت",
+      "reset": "إعادة ضبط",
+      "mode": "وضع المؤقت"
     }
   },
   "modals": {
-    "common": {
-      "cancel": "إلغاء",
-      "fillDetails": "املأ التفاصيل أدناه."
-    },
+    "common": { "cancel": "إلغاء", "fillDetails": "املأ التفاصيل أدناه." },
     "tasks": {
       "create": {
         "title": "إنشاء مهمة",
@@ -139,9 +115,7 @@
         "deadlineLabel": "الموعد النهائي",
         "submit": "حفظ المهمة"
       },
-      "update": {
-        "submit": "حفظ التحديث"
-      }
+      "update": { "submit": "حفظ التحديث" }
     },
     "journal": {
       "create": {
@@ -154,26 +128,20 @@
         "moodPlaceholder": "الحالة المزاجية لليوميات",
         "submit": "حفظ اليوميات"
       },
-      "update": {
-        "title": "تحديث اليوميات",
-        "submit": "حفظ التغييرات"
-      }
+      "update": { "title": "تحديث اليوميات", "submit": "حفظ التغييرات" }
     },
     "notes": {
       "create": {
         "title": "إنشاء ملاحظة",
         "titleLabel": "العنوان",
-        "titlePlaceholder": "عنوان المهمة",
+        "titlePlaceholder": "عنوان الملاحظة",
         "contentLabel": "المحتوى",
-        "contentPlaceholder": "محتوى المهمة",
+        "contentPlaceholder": "محتوى الملاحظة",
         "tagLabel": "التوسيم",
-        "tagPlaceholder": "وسم المهمة",
+        "tagPlaceholder": "وسم الملاحظة",
         "submit": "حفظ الملاحظة"
       },
-      "update": {
-        "title": "تحديث الملاحظة",
-        "submit": "حفظ التغييرات"
-      }
+      "update": { "title": "تحديث الملاحظة", "submit": "حفظ التغييرات" }
     }
   },
   "sidebar": {
@@ -185,8 +153,7 @@
       "journal": "اليوميات",
       "calendar": "التقويم",
       "profile": "الملف الشخصي",
-            "pomodoro": "مؤقت التركيز"
-
+      "pomodoro": "مؤقت التركيز"
     },
     "logout": "تسجيل الخروج",
     "logoutSuccess": "تم تسجيل الخروج بنجاح",
@@ -197,9 +164,5 @@
     "close": "إغلاق",
     "loading": "جاري التحميل...",
     "selectDate": "اختر التاريخ"
-  },
-  "metadata": {
-    "title": "Create Next App",
-    "description": "Generated by create next app"
   }
 }

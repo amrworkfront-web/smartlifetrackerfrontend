@@ -8,10 +8,21 @@ export default function StoreInitializer() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user")
+    try {
+      const storedUser = localStorage.getItem("user")
 
-    if (storedUser) {
-      dispatch(setUser(JSON.parse(storedUser)))
+      if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+        const parsed = JSON.parse(storedUser)
+        if (parsed && typeof parsed === "object") {
+          dispatch(setUser(parsed))
+        } else {
+          localStorage.removeItem("user")
+        }
+      } else {
+        localStorage.removeItem("user")
+      }
+    } catch {
+      localStorage.removeItem("user")
     }
   }, [dispatch])
 

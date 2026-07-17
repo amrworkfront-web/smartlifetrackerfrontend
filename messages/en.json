@@ -1,7 +1,7 @@
 {
   "auth": {
     "login": {
-      "title": "Welcome Back 👋",
+      "title": "Welcome Back",
       "subtitle": "Login to your account",
       "email": "Email",
       "emailPlaceholder": "you@example.com",
@@ -11,7 +11,7 @@
       "submitting": "Logging in...",
       "footerText": "Don't have an account?",
       "registerLink": "Register",
-      "successToast": "wellcome back",
+      "successToast": "Welcome back",
       "errorToast": "Login failed",
       "errorDesc": "Please check your credentials and try again."
     },
@@ -28,9 +28,9 @@
       "submitting": "Registering...",
       "footerText": "Already have an account?",
       "loginLink": "Log In",
-      "successToast": "wellcome",
-      "errorToast": "Error registering user:",
-      "errorDesc": "Please check your credentials and try again."
+      "successToast": "Account created successfully",
+      "errorToast": "Registration failed",
+      "errorDesc": "Please check your details and try again."
     }
   },
   "dashboard": {
@@ -38,67 +38,44 @@
       "title": "Tasks",
       "addTask": "Add Task",
       "searchPlaceholder": "Search tasks...",
-      "filters": {
-        "all": "All",
-        "today": "Today",
-        "upcoming": "Upcoming"
-      },
-      "priority": {
-        "high": "High",
-        "medium": "Medium",
-        "low": "Low"
-      },
-      "status": {
-        "loading": "Loading...",
-        "error": "Error loading tasks"
-      },
-      "actions": {
-        "delete": "Delete",
-        "update": "Update"
-      },
+      "filters": { "all": "All", "today": "Today", "upcoming": "Upcoming" },
+      "priority": { "high": "High", "medium": "Medium", "low": "Low" },
+      "status": { "loading": "Loading...", "error": "Error loading tasks", "empty": "No tasks found" },
+      "actions": { "delete": "Delete", "update": "Update" },
       "toast": {
         "deleteSuccess": "Task \"{title}\" deleted successfully",
-        "deleteError": "Error failed to delete task",
+        "deleteError": "Failed to delete task",
         "createSuccess": "Task created successfully",
-        "createError": "Error failed add task",
-        "updateSuccess": "Task updated",
-        "updateSuccessFull": "task updated successfuly",
-        "updateError": "Error faild add task"
+        "createError": "Failed to create task",
+        "updateSuccess": "Task updated successfully",
+        "updateError": "Failed to update task"
       }
     },
     "notes": {
       "title": "Notes",
       "addNote": "Add Note",
       "searchPlaceholder": "Search notes...",
-      "status": {
-        "error": "Error loading notes"
-      },
+      "status": { "error": "Error loading notes" },
       "toast": {
-        "updateSuccess": "note updated successfuly",
-        "updateError": "Error faild to update note",
+        "updateSuccess": "Note updated successfully",
+        "updateError": "Failed to update note",
         "deleteSuccess": "Note \"{title}\" deleted successfully",
-        "deleteError": "Error failed to delete note",
-        "createSuccess": "note created successfully",
-        "createError": "Error faild add note"
+        "deleteError": "Failed to delete note",
+        "createSuccess": "Note created successfully",
+        "createError": "Failed to create note"
       }
     },
     "journal": {
       "title": "Journals",
-      "addJournal": "Add journal",
+      "addJournal": "Add Journal",
       "searchPlaceholder": "Search your thoughts...",
-      "status": {
-        "error": "Error loading journals"
-      },
-      "mood": {
-        "happy": "Happy",
-        "sad": "Sad",
-        "neutral": "Neutral"
-      },
+      "status": { "error": "Error loading journals" },
+      "mood": { "happy": "Happy", "sad": "Sad", "neutral": "Neutral" },
       "toast": {
-        "createSuccess": "journal created succussfully",
-        "createError": "Error faild add jornal",
-        "updateSuccess": "journal updated successfuly",
-        "updateError": "Error faild add journal"
+        "createSuccess": "Journal created successfully",
+        "createError": "Failed to create journal",
+        "updateSuccess": "Journal updated successfully",
+        "updateError": "Failed to update journal"
       }
     },
     "profile": {
@@ -109,24 +86,24 @@
         "journals": "Journals",
         "notes": "Notes",
         "loading": "Loading stats..."
-      },
-      "info": {
-        "title": "Profile Information",
-        "name": "Full Name",
-        "email": "Email",
-        "cancel": "Cancel",
-        "save": "Save Changes"
       }
     },
-    "calendar": {
-      "title": "Calendar"
+    "calendar": { "title": "Calendar" },
+    "pomodoro": {
+      "title": "Focus Mode",
+      "focusingOn": "Focusing on",
+      "taskName": "Task Name",
+      "goalPlaceholder": "What's the goal?",
+      "minutes": "Minutes",
+      "setGoal": "Set Goal",
+      "startFocus": "Start Focus",
+      "pause": "Pause",
+      "reset": "Reset",
+      "mode": "Timer mode"
     }
   },
   "modals": {
-    "common": {
-      "cancel": "Cancel",
-      "fillDetails": "Fill in the details below."
-    },
+    "common": { "cancel": "Cancel", "fillDetails": "Fill in the details below." },
     "tasks": {
       "create": {
         "title": "Create Task",
@@ -138,41 +115,33 @@
         "deadlineLabel": "Deadline",
         "submit": "Save Task"
       },
-      "update": {
-        "submit": "Save Update"
-      }
+      "update": { "submit": "Save Update" }
     },
     "journal": {
       "create": {
-        "title": "Create journal",
+        "title": "Create Journal",
         "titleLabel": "Title",
         "titlePlaceholder": "Journal title",
         "contentLabel": "Content",
-        "contentPlaceholder": "Journal Content",
+        "contentPlaceholder": "Journal content",
         "moodLabel": "Mood",
         "moodPlaceholder": "Journal mood",
-        "submit": "Save journal"
+        "submit": "Save Journal"
       },
-      "update": {
-        "title": "Update Journal",
-        "submit": "Save Changes"
-      }
+      "update": { "title": "Update Journal", "submit": "Save Changes" }
     },
     "notes": {
       "create": {
         "title": "Create Note",
         "titleLabel": "Title",
-        "titlePlaceholder": "Task title",
+        "titlePlaceholder": "Note title",
         "contentLabel": "Content",
-        "contentPlaceholder": "Task Content",
+        "contentPlaceholder": "Note content",
         "tagLabel": "Tag",
-        "tagPlaceholder": "Task tag",
+        "tagPlaceholder": "Note tag",
         "submit": "Save Note"
       },
-      "update": {
-        "title": "Update Note",
-        "submit": "Save Changes"
-      }
+      "update": { "title": "Update Note", "submit": "Save Changes" }
     }
   },
   "sidebar": {
@@ -184,10 +153,10 @@
       "journal": "Journal",
       "calendar": "Calendar",
       "profile": "Profile",
-      "pomodoro": "pomodoro"
+      "pomodoro": "Focus Timer"
     },
     "logout": "Logout",
-    "logoutSuccess": "Logout successfully",
+    "logoutSuccess": "Logged out successfully",
     "toggle": "Toggle Sidebar",
     "language": "Language"
   },
@@ -195,9 +164,5 @@
     "close": "Close",
     "loading": "Loading...",
     "selectDate": "Select date"
-  },
-  "metadata": {
-    "title": "Create Next App",
-    "description": "Generated by create next app"
   }
 }

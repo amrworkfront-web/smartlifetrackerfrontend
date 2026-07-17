@@ -1,5 +1,6 @@
-export type Priority = 'Low' | 'Medium' | 'High';
-export type Mood = 'Happy' | 'Sad' | 'Neutral' | 'Excited' | 'Tired' | 'Angry';
+export type Priority = "Low" | "Medium" | "High";
+
+export type Mood = "Happy" | "Sad" | "Neutral" | "Excited" | "Tired" | "Angry";
 
 export interface User {
   id: string;
@@ -9,22 +10,17 @@ export interface User {
 }
 
 export interface Task {
-  _id: string; // MongoDB typically uses _id
+  _id: string;
   userId: string;
   title: string;
   description?: string;
   priority: Priority;
-  status: boolean; 
-  isCompleted: boolean; 
+  status: boolean;
+  isCompleted: boolean;
   deadline: string;
   createdAt: string;
   updatedAt: string;
 }
-
-// Correction: The updateTask signature in taskAPI.ts had `status:boolean`. 
-// To allow flexibility and better naming, I'll map `status` to `boolean` or strict string if needed.
-// However, standardizing on a string enum is usually better for "Status".
-// Let's look at `taskAPI.ts` again.
 
 export interface CreateTaskInput {
   title: string;
@@ -35,7 +31,16 @@ export interface CreateTaskInput {
 
 export interface UpdateTaskInput extends Partial<CreateTaskInput> {
   id: string;
-  status?: boolean; // Matching the existing API signature found in taskAPI.ts
+  status?: boolean;
+}
+
+export interface Note {
+  _id: string;
+  title: string;
+  content: string;
+  tag: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Journal {

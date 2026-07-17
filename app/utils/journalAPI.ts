@@ -1,5 +1,5 @@
 import axiosInstance from "./axiosInstance";
-import { CreateJournalInput, Journal, UpdateJournalInput } from "@/types";
+import { Journal, CreateJournalInput, UpdateJournalInput } from "@/types";
 
 export const createJournal = async (
   journal: CreateJournalInput,
@@ -8,15 +8,13 @@ export const createJournal = async (
   return response.data;
 };
 
-export const getJournals = async (search?: string) => {
-  let query = "";
-  if (search) {
-    const params = new URLSearchParams();
-    params.append("search", search);
-    query = `?${params.toString()}`;
-  }
+export const getJournals = async (search?: string): Promise<Journal[]> => {
+  const params = new URLSearchParams();
+  if (search) params.append("search", search);
+
+  const query = params.toString() ? `?${params.toString()}` : "";
   const response = await axiosInstance.get(`/journal${query}`);
-  return response.data;
+return response.data.data
 };
 
 export const updateJournal = async (
@@ -25,4 +23,8 @@ export const updateJournal = async (
   const { id, ...data } = journal;
   const response = await axiosInstance.put(`/journal/${id}`, data);
   return response.data;
+};
+
+export const deleteJournal = async (id: string): Promise<void> => {
+  await axiosInstance.delete(`/journal/${id}`);
 };

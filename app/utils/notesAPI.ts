@@ -1,30 +1,44 @@
 import axiosInstance from "./axiosInstance";
 
-export const createNote=async(Note:{title:string,content:string,tag:string})=>{
-    const response=await axiosInstance.post('/notes',Note)
-    return response.data
-
+export interface Note {
+  _id: string;
+  title: string;
+  content: string;
+  tag: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export const getNotes=async(search?: string)=>{
-      let query = '';
-
-      if(search){
-          const params = new URLSearchParams();
-          params.append('search', search);
-          query = `?${params.toString()}`; 
-        }
-
-    const response=await axiosInstance.get(`/notes${query}`)
-    return response.data
+export interface CreateNoteInput {
+  title: string;
+  content: string;
+  tag: string;
 }
 
-export const deleteNote=async(id:string)=>{
-    const response= await axiosInstance.delete(`/notes/${id}`)
-    return response.data
+export interface UpdateNoteInput extends CreateNoteInput {
+  id: string;
 }
 
-export const updateNote=async(Note:{title:string,content:string,tag:string,id:string})=>{
-    const response=await axiosInstance.put(`/notes/${Note.id}`,Note)
-    return response.data
-}
+export const createNote = async (note: CreateNoteInput): Promise<Note> => {
+  const response = await axiosInstance.post("/notes", note);
+  return response.data;
+};
+
+export const getNotes = async (search?: string): Promise<Note[]> => {
+  const params = new URLSearchParams();
+  if (search) params.append("search", search);
+
+  const query = params.toString() ? `?${params.toString()}` : "";
+  const response = await axiosInstance.get(`/notes${query}`);
+return response.data.data
+};
+
+export const deleteNote = async (id: string): Promise<void> => {
+  await axiosInstance.delete(`/notes/${id}`);
+};
+
+export const updateNote = async (note: UpdateNoteInput): Promise<Note> => {
+  const { id, ...data } = note;
+  const response = await axiosInstance.put(`/notes/${id}`, data);
+  return response.data;
+};

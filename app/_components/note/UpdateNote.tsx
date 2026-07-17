@@ -12,106 +12,110 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {toast} from 'sonner'
-import { updateNote } from "../../utils/notesAPI";
+import { toast } from "sonner";
+import { updateNote, UpdateNoteInput } from "../../utils/notesAPI";
 import { Pen } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
 import { useTranslations } from "next-intl";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type NoteData = {
+const updateNoteSchema = z.object({
+  title: z.string().min(1, "Title is required").max(200),
+  content: z.string().min(1, "Content is required").max(5000),
+  tag: z.string().max(50),
+});
+
+type UpdateNoteFormValues = z.infer<typeof updateNoteSchema>;
+
+type UpdateNoteProps = {
   id: string;
   title: string;
   content: string;
   tag: string;
 };
+
 export default function UpdateNote({
   id,
   title,
   content,
   tag,
-}: NoteData) {
+}: UpdateNoteProps) {
   const t = useTranslations("modals.notes");
   const tc = useTranslations("modals.common");
   const tn = useTranslations("dashboard.notes");
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit } = useForm<NoteData>({
-    defaultValues: {
-      title,
-      content,
-      tag,
-    },
+  const { register, handleSubmit } = useForm<UpdateNoteFormValues>({
+    resolver: zodResolver(updateNoteSchema),
+    defaultValues: { title, content, tag },
   });
 
   const mutation = useMutation({
-    mutationFn: (data: NoteData) => updateNote(data),
+    mutationFn: (data: UpdateNoteInput) =>
+      updateNote({ ...data, id }),
     onSuccess: () => {
-        toast.success(tn("toast.updateSuccess"))
+      toast.success(tn("toast.updateSuccess"));
       queryClient.invalidateQueries({ queryKey: ["notes"] });
     },
     onError: () => {
-      toast.error(tc("fillDetails")); // or generic error
+      toast.error(tn("toast.updateError"));
     },
   });
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className=" update-btn">
-   <Pen/>
+        <button className="update-btn" aria-label={t("update.title")}>
+          <Pen aria-hidden="true" />
         </button>
       </DialogTrigger>
-
-      <DialogContent       onPointerDownOutside={(e)=>e.preventDefault()} className="sm:max-w-[450px] w-full">
+      <DialogContent className="sm:max-w-[450px] w-full">
         <form
-          onSubmit={handleSubmit((data) => {
-            mutation.mutate({...data,id});
-          })}
+          onSubmit={handleSubmit((data) => mutation.mutate({ ...data, id }))}
           className="space-y-4"
         >
           <DialogHeader>
             <DialogTitle>{t("update.title")}</DialogTitle>
             <DialogDescription>{tc("fillDetails")}</DialogDescription>
           </DialogHeader>
-
           <div className="grid gap-4 mt-2">
             <div className="grid gap-2">
-              <Label htmlFor="title">{t("create.titleLabel")}</Label>
+              <Label htmlFor="update-note-title">{t("create.titleLabel")}</Label>
               <Input
-                id="title"
+                id="update-note-title"
                 {...register("title")}
                 placeholder={t("create.titlePlaceholder")}
               />
             </div>
-
             <div className="grid gap-2">
-              <Label htmlFor="content">{t("create.contentLabel")}</Label>
-              <textarea
-                id="content"
+              <Label htmlFor="update-note-content">{t("create.contentLabel")}</Label>
+              <Textarea
+                id="update-note-content"
                 {...register("content")}
                 placeholder={t("create.contentPlaceholder")}
-                className="textarea"
               />
             </div>
-
             <div className="grid gap-2">
-              <Label htmlFor="tag">{t("create.tagLabel")}</Label>
+              <Label htmlFor="update-note-tag">{t("create.tagLabel")}</Label>
               <Input
-                id="tag"
+                id="update-note-tag"
                 {...register("tag")}
                 placeholder={t("create.tagPlaceholder")}
               />
             </div>
-
           </div>
-
           <DialogFooter className="mt-4 flex justify-end gap-2">
             <DialogClose asChild>
               <Button variant="outline">{tc("cancel")}</Button>
             </DialogClose>
-            <Button type="submit" className="bg-green-600 hover:bg-green-700">
+            <Button
+              type="submit"
+              className="bg-green-600 hover:bg-green-700"
+              disabled={mutation.isPending}
+            >
               {t("update.submit")}
             </Button>
           </DialogFooter>

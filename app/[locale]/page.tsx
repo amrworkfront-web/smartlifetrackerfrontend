@@ -8,16 +8,13 @@ import About from "../_components/landingpage/About";
 import Pricing from "../_components/landingpage/Pricing";
 import Footer from "../_components/landingpage/Footer";
 
-// Animation variants for sections
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6
-    }
-  }
+    transition: { duration: 0.6 },
+  },
 };
 
 const staggerContainer = {
@@ -26,20 +23,16 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.15,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 };
 
-export default function Landingpage() {
+export default function LandingPage() {
   return (
-<main className="bg-slate-950 w-full  relative">      {/* Navbar - Fixed position, no animation needed */}
+    <main className="bg-slate-950 w-full relative">
       <Navbar />
-
-      {/* Hero Section - Will handle animations internally */}
       <Hero />
-
-      {/* Features Section - Stagger animation */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -48,8 +41,6 @@ export default function Landingpage() {
       >
         <Features />
       </motion.div>
-
-      {/* About Section - Fade in up */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -58,8 +49,6 @@ export default function Landingpage() {
       >
         <About />
       </motion.div>
-
-      {/* Pricing Section - Stagger animation */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -68,8 +57,6 @@ export default function Landingpage() {
       >
         <Pricing />
       </motion.div>
-
-      {/* Footer - Fade in up */}
       <motion.div
         initial="hidden"
         whileInView="visible"

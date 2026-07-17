@@ -18,11 +18,12 @@ export default function About() {
           <div className="relative rounded-3xl border border-white/10 overflow-hidden bg-slate-900 shadow-2xl">
              {/* هنا يمكنك وضع صورة لواجهة التطبيق أو صورة تعبيرية */}
             <Image 
-              src="/about-dashboard.png" // تأكد من وجود صورة أو استبدلها بـ Placeholder
-              alt="Dashboard Preview"
+              src="/heroimgwithoutbg.png"
+              alt="Smart Life Tracker Dashboard Preview"
               width={600}
               height={400}
               className="w-full h-auto object-cover opacity-80"
+              loading="lazy"
             />
           </div>
           
